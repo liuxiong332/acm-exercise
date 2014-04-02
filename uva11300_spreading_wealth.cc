@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <algorithm>
-
+#include <iostream>
 /* 
 	there are n people, every people has some wealth, and they want to give some wealth to others to make 
 	every people have the same wealth. Your task is to find a method to spread the wealth and make the count 
@@ -19,10 +19,10 @@
 int main()
 {
 	int n;
-	int * p;
-	int sum;
+	long long * p;
+	long long sum;
 	while( scanf("%d",&n)!=EOF ) {
-		p = new int[n];
+		p = new long long[n];
 		int d;
 		sum = 0;
 		for(int i=0;i<n;++i) {
@@ -35,15 +35,16 @@ int main()
 			p[i] = (i+1)*sum - p[i];		//Yi = Yn - (i+1)*n + X1+X2+...Xi
 		}
 		std::nth_element(p,p+n/2,p+n);
-		int Y = p[n/2];
-		int val;
+		long long Y = p[n/2];
+		long long val;
 		sum = 0;
 		for(int i=0;i<n;++i) {
 			val = Y-p[i];
 			val = val>0?val:-val;
 			sum += val;
 		}
-		printf("%d\n",sum);
+//		printf("%d\n",sum);
+		std::cout<<sum<<std::endl;
 		delete p;
 	}
 }
